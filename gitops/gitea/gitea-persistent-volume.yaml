@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: gitea-data
-  namespace: demo-project
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
