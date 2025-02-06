@@ -9,8 +9,10 @@ spec:
   server:
     route:
       enabled: true
-  dex:
-    openShiftOAuth: true
+  sso:
+    provider: dex
+    dex:
+       openShiftOAuth: true
   resourceExclusions: |
     - apiGroups:
         - tekton.dev
