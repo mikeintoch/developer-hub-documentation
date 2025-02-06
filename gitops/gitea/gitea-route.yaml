@@ -2,7 +2,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: gitea
-  namespace: demo-project
+  namespace: demo
 spec:
   to:
     kind: Service
