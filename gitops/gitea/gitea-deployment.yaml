@@ -5,6 +5,7 @@ metadata:
   namespace: demo-project
   labels:
     app: gitea
+    app.kubernetes.io/part-of: gitea
 spec:
   replicas: 1
   selector:
