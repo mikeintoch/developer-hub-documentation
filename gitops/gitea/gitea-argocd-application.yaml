@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitea
+  namespace: demo-project
+  labels:
+    rht-gitops.com/demo-project: gitea
+  finalizers:
+    # Alternatively, you can use background cascading deletion
+  - resources-finalizer.argocd.argoproj.io/background
+spec:
+  project: default
+  sources:
+  - repoURL: 'https://redhat-cop.github.io/helm-charts'
+    chart: gitea
+    targetRevision: 0.1.4
+    helm:
+      valueFiles:
+        - $values/gitops/gitea/values/values.yaml
+  - repoURL: 'https://github.com/mikeintoch/developer-hub-documentation'
+    targetRevision: HEAD
+    ref: values
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: demo-project
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
